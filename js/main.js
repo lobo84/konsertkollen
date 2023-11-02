@@ -16,23 +16,5 @@ eventElements.forEach((eventElement) => {
         // The event has passed, so you can hide it (for example, using CSS)
         eventElement.style.display = 'none';
     }
-});
 
-
-selected = new Set();
-document.addEventListener("DOMContentLoaded", function () {
-    const selectableItems = document.querySelectorAll(".selectable");
-    selectableItems.forEach((item) => {
-        item.addEventListener("click", function () {
-            if (!item.classList.contains("text-success")) {
-                item.classList.add("text-success");
-                item.classList.remove("text-info");
-                selected.add(item.textContent);
-            } else {
-                item.classList.remove("text-success");
-                item.classList.add("text-info");
-                selected.delete(item.textContent);
-            }
-        });
-    });
 });
