@@ -46,17 +46,19 @@ selected = new Set();
 document.addEventListener("DOMContentLoaded", function () {
     const selectableItems = document.querySelectorAll(".selectable");
     selectableItems.forEach((item) => {
-        item.addEventListener("click", function () {
-            if (!item.classList.contains("text-decoration-underline")) {
-                item.classList.add("text-decoration-underline");
-                //item.classList.remove("text-info");
-                selected.add(item.textContent);
-                updateVisibleEvents();
-            } else {
-                item.classList.remove("text-decoration-underline");
-                selected.delete(item.textContent);
-                updateVisibleEvents();
-            }
-        });
+        const onClick = function () {
+                              if (!item.classList.contains("text-decoration-underline")) {
+                                  item.classList.add("text-decoration-underline");
+                                  //item.classList.remove("text-info");
+                                  selected.add(item.textContent);
+                                  updateVisibleEvents();
+                              } else {
+                                  item.classList.remove("text-decoration-underline");
+                                  selected.delete(item.textContent);
+                                  updateVisibleEvents();
+                              }
+                          }
+        item.addEventListener("click", onClick);
+        item.addEventListener("touchstart", onClick)
     });
 });
