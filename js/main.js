@@ -16,5 +16,47 @@ eventElements.forEach((eventElement) => {
         // The event has passed, so you can hide it (for example, using CSS)
         eventElement.style.display = 'none';
     }
+});
 
+
+function updateVisibleEvents() {
+    const eventElements = document.querySelectorAll('.list-group-item');
+    eventElements.forEach((eventElement) => {
+        const genreElements = eventElement.querySelectorAll('.genre');
+        var genreVisible = false;
+        if (selected.size == 0) {
+            genreVisible = true;
+        } else {
+            genreElements.forEach((genreElement) => {
+                const genreText = genreElement.textContent.trim();
+                if (selected.has(genreText)) {
+                    genreVisible = true;
+                }
+            });
+        }
+        if (!genreVisible) {
+            eventElement.style.display = 'none';
+        } else {
+            eventElement.style.display = '';
+        }
+    });
+}
+
+selected = new Set();
+document.addEventListener("DOMContentLoaded", function () {
+    const selectableItems = document.querySelectorAll(".selectable");
+    selectableItems.forEach((item) => {
+        item.addEventListener("click", function () {
+            if (!item.classList.contains("text-decoration-underline")) {
+                item.classList.add("text-decoration-underline");
+                //item.classList.remove("text-info");
+                selected.add(item.textContent);
+                updateVisibleEvents();
+            } else {
+                item.classList.remove("text-decoration-underline");
+                selected.delete(item.textContent);
+                updateVisibleEvents();
+            }
+        });
+    });
 });
