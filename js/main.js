@@ -46,7 +46,8 @@ selected = new Set();
 document.addEventListener("DOMContentLoaded", function () {
     const selectableItems = document.querySelectorAll(".selectable");
     selectableItems.forEach((item) => {
-        const onClick = function () {
+        const onClick = function (ev) {
+                              ev.preventDefault();
                               if (!item.classList.contains("text-decoration-underline")) {
                                   item.classList.add("text-decoration-underline");
                                   //item.classList.remove("text-info");
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                   updateVisibleEvents();
                               }
                           }
-        item.addEventListener("click", onClick);
-        item.addEventListener("touchstart", onClick)
+        item.addEventListener("click", onClick, false);
+        item.addEventListener("touchStart", onClick, false);
     });
 });
