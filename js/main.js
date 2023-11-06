@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                   updateVisibleEvents();
                               }
                           }
-        item.addEventListener("touchend", onClick);
+        item.addEventListener("touch", onClick);
         item.addEventListener("click", onClick);
     });
 });
